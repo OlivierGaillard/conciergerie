@@ -3,12 +3,20 @@
 }
 
 h1 {
-	 font-size: 1.5em;
+	font-size: 2.0em;
     text-align: left;
     padding: 5px 0px 5px 5px;
     background-color: rgb(121, 174, 200);
 }
 
+nav {
+    font-size: 1.5em;
+
+}
+
+#footer {
+   font-size: 1.5em;
+}
 
 table th, td, tr {
     border: 0.5px solid black;
