@@ -1,0 +1,10 @@
+Django==1.11.2
+django-bootstrap-datepicker==1.2.2
+django-bootstrap-form==3.2.1
+django-crispy-forms==1.6.1
+django-filter==1.0.4
+django-mptt==0.8.7
+django-mptt-admin==0.4.6
+django-mptt-tree-editor==0.1.2
+pytz==2017.2
+six==1.10.0
