@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load mptt_tags %}
+{% block content %}
+<h1>Tissus</h1>
+<ul>
+{% for a in tissus %}
+    <li>{{ a.name }} / Category: {{a.tissuecategory.title}} / Tarif: {{a.tarif}}</li>
+{% endfor %}
+</ul>
+{% endblock %}

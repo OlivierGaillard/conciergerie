@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workours</title>
+</head>
+<body>
+<h1>Workhour</h1>
+<h2>Concierge Usage</h2>
+<p>The concierge, which know almost nothing of a computer, will have to enter his working hours. So he enters the
+following data:
+    <ol>
+    <li>date</li>
+    <li>title</li>
+    <li>duration in decimal format: 1.5 is 1h30min</li>
+</ol>
+</p>
+
+<h2>Admin Usage</h2>
+<p>The manager diplay the list of all workhours and can filter by month, entering month and year.
+    At the bottom of the list she can see the total of hours and the amount to pay. She can print this
+    report.</p>
+
+<p>She can set the amount of money per hour</p>
+
+<h1>Implementation</h1>
+<h2>Enter hours</h2>
+<p>Nothing special here.</p>
+<h2>Generate salary sheet</h2>
+<p>We have to filter per month and year (one field) and to generate the report by summing the durations
+multiplied by the work-hour amount.</p>
+
+<h3>Filter the hour listing</h3>
+
+<p>We can simply use the package <em>django-filter</em>. It seems stable and up-to-date.</p>
+
+
+</body>
+</html>

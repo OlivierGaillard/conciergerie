@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="/static/conciergerie/style.css" />
+{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<p>
+    <form action="" method="get">
+        {{ filter.form|crispy}}
+    <input type="submit" />
+</form>
+</p>
+
+<table>
+    <tr>
+        <th>Titre</th><th>Date</th><th>Duree</th>
+    </tr>
+{% for a in filter.qs %}
+    <tr>
+        <td>{{ a.titre }}</td> <td>{{ a.date|date:"d/m/Y" }}</td> <td>{{ a.temps}}</td>
+    </tr>
+{% endfor %}
+    <tr>
+        <th colspan="2">Total</th>
+        <td> {{ temps_total }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

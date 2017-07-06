@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Titi</h1>
+<ul>
+{% for a in liste %}
+    <li>{{ a.arrivee }} / {{ a.depart}} : {{a.visiteur}}</li>
+{% endfor %}
+</ul>
+{% endblock %}

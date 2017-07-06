@@ -1,0 +1,48 @@
+{#templates/base.html#}
+{% load static %}
+{% block doctype %}<!DOCTYPE html>{% endblock %}
+{% load i18n %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock %}{% trans "My Website"%}</title>
+    <link rel="icon" href="{{ STATIC_URL }}site/img/favicon.ico" type="image/png" />
+{% block meta_tags %}{% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+{% block stylesheet %}{% endblock %}
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/conciergerie/style.css" />
+
+</head>
+
+<body class="{% block bodyclass %}{% endblock %}">
+{% block page %}
+
+
+
+
+
+<div id="content" class="clearfix">
+  {% block content %}
+  {% endblock %}
+</div>
+
+<div id="footer" class="clearfix">
+  {% block footer_navigation %}
+    <a href="/">Home</a>
+  {% endblock %}
+</div>
+
+</div>
+{% block extrabody %}{% endblock %}
+{% endblock %}
+</body>
+</html>
