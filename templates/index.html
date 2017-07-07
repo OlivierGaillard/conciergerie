@@ -1,10 +1,19 @@
-{% block stylesheet %}
-<link rel="stylesheet" type="text/css" href="/static/conciergerie/style.css" />
+{% extends "base.html" %}
+{% block bodyclass %}
+block_page
 {% endblock %}
+
+{% block content %}
 <h1>Saisie des heures de conciergerie</h1>
 <nav>
     <ul>
     <li> <a href="conciergerie/list">Liste des travaux</a></li>
     <li> <a href="conciergerie/createtv">Ajouter un travail</a></li>
+    <li> <a href="conciergerie/about">About</a></li>
     </ul>
 </nav>
+
+{% block footer_navigation %}
+{% endblock %}
+
+{% endblock %}

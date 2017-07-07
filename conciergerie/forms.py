@@ -12,19 +12,23 @@ class TravailCreateForm(forms.ModelForm):
         fields = ['date', 'titre', 'temps', ]
         widgets = {
             'date': forms.TextInput(
-                attrs={'type': 'date'}
+                attrs={'type': 'date'},
             ),
         }
 
+class TravailFormSetHelper(FormHelper):
     def __init__(self, *args, **kwargs):
-        super(TravailCreateForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-3'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = reverse('conciergerie:createtv')
-        self.helper.add_input(Submit('submit', 'Submit'))
+        super(TravailFormSetHelper, self).__init__(*args, **kwargs)
+        self.form_method = 'post'
+        self.form_action = reverse('conciergerie:createtv')
+        self.layout = Layout(
+            'date',
+            'titre',
+            'temps',
+        )
+
+        self.render_required_fields = False
+
 
 
 class TravailFilterForm(forms.Form):

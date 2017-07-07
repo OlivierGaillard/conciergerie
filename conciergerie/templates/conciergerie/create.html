@@ -1,6 +1,12 @@
 {% extends "base.html" %}
+{% block bodyclass %}
+block_page
+{% endblock %}
 {% block content %}
 <h1>Ajouter un travail</h1>
 {% load crispy_forms_tags %}
-{% crispy form %}
+{% crispy formset helper %}
+<p>
+{{ formset.non_form_errors }}
+</p>
 {% endblock %}

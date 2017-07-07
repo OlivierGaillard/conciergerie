@@ -1,6 +1,10 @@
 {% extends "base.html" %}
+{% block bodyclass %}
+block_page
+{% endblock %}
 {% block content %}
 <h1>Conciergerie</h1>
-<p>Juste un mini programme pour saisir le travail de conciergerie.</p>
+<p>Juste un mini programme pour saisir le travail de conciergerie. Il fait usage de
+<em>crispy forms</em> et de <em>ModelFormSet</em> ainsi que de <em>django_filters</em>.</p>
 {% endblock %}
 

@@ -2,6 +2,23 @@
 	font-family: Verdana, sans-serif;
 }
 
+.block_page {
+   width: 100%;
+   height : 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
+
+#footer {
+   display: flex;
+   justify-content: center;
+}
+
+.table table-striped table-condensed {
+   padding 40px 20px 20px 20px;
+}
+
 h1 {
 	font-size: 2.0em;
     text-align: left;
@@ -20,7 +37,7 @@ nav {
 
 table th, td, tr {
     border: 0.5px solid black;
-     border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 table th {
@@ -41,6 +58,7 @@ body
     /* text-decoration: underline; */
     /* background-image: url('images/logindoor.jpg'); */
     background-color: blanchedalmond;
+    margin: 40px;
     opacity: 1.0;
 }
 
