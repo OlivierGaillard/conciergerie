@@ -10,6 +10,12 @@ block_page
     <li> <a href="conciergerie/list">Liste des travaux</a></li>
     <li> <a href="conciergerie/createtv">Ajouter un travail</a></li>
     <li> <a href="conciergerie/about">About</a></li>
+        {% if request.user.is_authenticated %}
+	      <li><a href="{% url "accounts:logout" %}" title="Logout">Logout</a></li>
+	    {% else %}
+	      <li><a href="{% url "accounts:login" %}" title="Login">Login</a></li>
+	    {% endif %}
+    <li><a href="accounts/new-user">S'enregister</a></li>
     </ul>
 </nav>
 

@@ -20,3 +20,8 @@ class TravailFilter(django_filters.FilterSet):
             ),
         }
         #form = TravailFilterForm
+
+    @property
+    def qs(self):
+        parent = super(TravailFilter, self).qs
+        return parent.filter(owner=self.request.user)

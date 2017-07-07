@@ -4,6 +4,7 @@ block_page
 {% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
+<h1>Travaux de <em>{{ owner }}</em></h1>
 <p>
     <form action="" method="get">
         {{ filter.form|crispy}}

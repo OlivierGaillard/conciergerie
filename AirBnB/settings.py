@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django_mptt_admin',
     'django_filters',
     #'mptt_tree_editor',
+    'accounts.apps.AccountsConfig',
     'menages',
     'conciergerie',
     'django.contrib.admin',
@@ -129,3 +130,4 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
+LOGIN_REDIRECT_URL = '/'

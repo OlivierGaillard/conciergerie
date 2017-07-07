@@ -1,4 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.forms import modelformset_factory
 from django.shortcuts import render, reverse
 from django.views.generic import CreateView, TemplateView
@@ -8,6 +10,7 @@ from .models import Travail
 from .filters import TravailFilter
 from .forms import TravailCreateForm, TravailFormSetHelper
 
+@method_decorator(login_required, name='dispatch')
 class  TravailCreateView(CreateView):
     model = Travail
     template_name = "conciergerie/create.html"
@@ -30,7 +33,7 @@ class  TravailCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(TravailCreateView, self).get_context_data(**kwargs)
-        formset = self.TravailFormset()
+        formset = self.TravailFormset(queryset=Travail.objects.filter(owner=self.request.user))
         context['formset'] = formset
         context['helper'] = self.make_crispy_helper()
         return context
@@ -39,7 +42,17 @@ class  TravailCreateView(CreateView):
         self.object = None
         formset = self.TravailFormset(request.POST, request.FILES)
         if formset.is_valid():
-            formset.save()
+            print("Is VALID")
+            i=0
+            instances = formset.save(commit=False)
+            print("iterating over instances...")
+            for travail in instances:
+                i += 1
+                print(i, self.request.user)
+                travail.owner  = self.request.user
+                travail.save()
+            for obj in formset.deleted_objects:
+                obj.delete()
             return HttpResponseRedirect(reverse('conciergerie:list'))
         else:
             context = super(TravailCreateView, self).get_context_data(**kwargs)
@@ -51,17 +64,20 @@ class  TravailCreateView(CreateView):
         return reverse('conciergerie:list')
 
 
-
+@method_decorator(login_required, name='dispatch')
 class TravailListViewFiltered(FilterView):
+
     filterset_class = TravailFilter
     template_name = "conciergerie/list.html"
 
     def get_context_data(self, **kwargs):
         context = super(TravailListViewFiltered, self).get_context_data(**kwargs)
         temps_total = 0
+        owner = self.request.user
         for i in self.filterset.qs:
             temps_total += i.temps
         context['temps_total'] = temps_total
+        context['owner'] = owner
         return context
 
 

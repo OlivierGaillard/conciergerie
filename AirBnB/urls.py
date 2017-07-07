@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
     url(r'^menages/', include('menages.urls', namespace='menages')),
     url(r'^conciergerie/', include('conciergerie.urls', namespace='conciergerie')),
+    url(r'^accounts/', include('accounts.urls', namespace="accounts")),
     url(r'^admin/', admin.site.urls),
 ]

@@ -9,7 +9,7 @@ class TravailCreateForm(forms.ModelForm):
 
     class Meta:
         model = Travail
-        fields = ['date', 'titre', 'temps', ]
+        fields = ['date', 'titre', 'temps' ]
         widgets = {
             'date': forms.TextInput(
                 attrs={'type': 'date'},
