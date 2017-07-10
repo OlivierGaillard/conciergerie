@@ -11,7 +11,7 @@ block_page
     <li> <a href="conciergerie/createtv">Ajouter un travail</a></li>
     <li> <a href="conciergerie/about">A propos</a></li>
         {% if request.user.is_authenticated %}
-	      <li><a href="{% url "accounts:logout" %}" title="Quitter">Quitter</a></li>
+	      <li><a href="{% url "accounts:logout" %}" title="Quitter ce site">Se déconnecter</a></li>
 	    {% else %}
 	      <li><a href="{% url "accounts:login" %}" title="Login">Connexion</a></li>
           <li><a href="accounts/new-user">S'enregister</a></li>

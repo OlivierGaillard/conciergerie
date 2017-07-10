@@ -1,9 +1,13 @@
 {% extends "base.html" %}
+{% block bodyclass %}
+block_page
+{% endblock %}
 {% block content %}
+<h1>Créer un compte utilisateur</h1>
 <form action="" method="POST">
 {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create account"/>
+    <input type="submit" value="Créer un compte"/>
 </form>
 {% endblock %}
     
