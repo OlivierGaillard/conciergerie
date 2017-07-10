@@ -16,6 +16,23 @@ class TravailCreateForm(forms.ModelForm):
             ),
         }
 
+        error_messages = {
+            'temps' : { 'invalid': 'Pas valide',
+                        'required' : 'Ce champ est requis',
+                        'max_digits' : "Pas plus de 1 chiffre avant la virgule et 2 après",
+                        'max_decimal_places' : "Pas plus de 2 décimales",
+                        'max_whole_digits' : "Pas plus de 1 chiffre entier",
+                        },
+            'date' : {
+                'required': 'Ce champ est requis',
+                'invalid' : 'Entrez une date valide',
+            },
+            'titre' : {
+                'required': 'Ce champ est requis',
+            }
+
+        }
+
 class TravailFormSetHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(TravailFormSetHelper, self).__init__(*args, **kwargs)
