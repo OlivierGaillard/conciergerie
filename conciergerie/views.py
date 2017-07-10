@@ -29,7 +29,7 @@ class  TravailCreateView(CreateView):
     extra_forms = 8
     TravailFormset = modelformset_factory(Travail,
                                           fields=['date', 'titre', 'temps'],
-                                          #localized_fields=['temps'],
+                                          localized_fields=['temps'],
                                           form=TravailCreateForm,
                                           formset=BaseTravailFormSet,
                                           can_delete=True,
