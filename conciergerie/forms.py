@@ -1,21 +1,18 @@
 from django import forms
 from django.shortcuts import reverse
 from crispy_forms.helper import FormHelper, Layout
-from crispy_forms.layout import Submit
 from conciergerie.models import Travail
+
 #from .filters import TravailFilter
 
 class TravailCreateForm(forms.ModelForm):
+    date = forms.DateField(input_formats=["%d/%m/%Y",])    #input_formats=["%d/%m/%Y",], )
+
+    #date = forms.DateField(widget=forms.TextInput(attrs={'class': 'datepicker'}), required=True, input_formats=['%d/%m/%Y', ])
 
     class Meta:
         model = Travail
         fields = ['date', 'titre', 'temps' ]
-        widgets = {
-            'date': forms.TextInput(
-                attrs={'type': 'date'},
-            ),
-        }
-
         error_messages = {
             'temps' : { 'invalid': 'Format pas valide. Une virgule et non un point?',
                         'required' : 'Ce champ est requis',
@@ -33,6 +30,7 @@ class TravailCreateForm(forms.ModelForm):
 
         }
 
+
 class TravailFormSetHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(TravailFormSetHelper, self).__init__(*args, **kwargs)
@@ -49,14 +47,18 @@ class TravailFormSetHelper(FormHelper):
 
 
 class TravailFilterForm(forms.Form):
-    date = forms.DateField(label='Date travail',
-                                    widget=forms.TextInput(attrs={'type': 'date'})
-                                    )
 
-    def __init__(self, *args, **kwargs):
-        super(TravailFilterForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_class = 'form-inline'
-        self.helper.form_method = "POST"
-        self.helper.form_action = reverse('conciergerie:list')
-        self.helper.add_input(Submit('Submit', 'submit'))
+    def clean(self):
+        cleaned_data = super(TravailFilterForm,self).clean()
+
+        year = cleaned_data.get("year")
+        if year and (year < 2017 or year > 2020):
+            self._errors['year'] = self._errors.get('year', [])
+            self._errors['year'].append("Choisir une valeur entre 2017 et 2019 (pour l'instant...)")
+
+        month = cleaned_data.get("month")
+        if month and (month < 1 or month > 12):
+            self._errors['month'] = self._errors.get('month', [])
+            self._errors['month'].append("Choisir une valeur entre 1 et 12")
+
+        return cleaned_data
