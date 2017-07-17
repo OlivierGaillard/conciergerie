@@ -6,9 +6,8 @@ from conciergerie.models import Travail
 #from .filters import TravailFilter
 
 class TravailCreateForm(forms.ModelForm):
-    date = forms.DateField(input_formats=["%d/%m/%Y","%d.%m.%Y","%d-%m-%Y"], help_text="exemple: 30/12/2017")    #input_formats=["%d/%m/%Y",], )
+    date = forms.DateField(help_text="exemple: 30/12/2017 ou 30.12.17 ou 30 12 17; 30 1 17 etc: jour mois année")
 
-    #date = forms.DateField(widget=forms.TextInput(attrs={'class': 'datepicker'}), required=True, input_formats=['%d/%m/%Y', ])
 
     class Meta:
         model = Travail
