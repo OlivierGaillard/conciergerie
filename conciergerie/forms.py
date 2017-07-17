@@ -46,15 +46,9 @@ class TravailFormSetHelper(FormHelper):
 
 
 class TravailFilterForm(forms.Form):
-    #month = forms.IntegerField(min_value=1, max_value=12)
 
     def clean(self):
         cleaned_data = super(TravailFilterForm,self).clean()
-        year = cleaned_data.get("year")
-        if year and (year < 2017 or year > 2020):
-            self._errors['year'] = self._errors.get('year', [])
-            self._errors['year'].append("Choisir une valeur entre 2017 et 2019 (pour l'instant...)")
-
         month = cleaned_data.get("month")
         if month is not None:
             if month < 1 or month > 12:

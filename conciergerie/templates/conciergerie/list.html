@@ -5,6 +5,8 @@ block_page
 {% block content %}
 {% load crispy_forms_tags %}
 <h1>Travaux de <em>{{ owner }}</em></h1>
+<h>Remarque: Seul les travaux de l'année courante sont affichés.</h>
+
 <p>
     <form action="" method="get">
         {{ filter.form|crispy}}
