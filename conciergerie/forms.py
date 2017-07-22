@@ -1,9 +1,6 @@
 from django import forms
-from django.shortcuts import reverse
-from crispy_forms.helper import FormHelper, Layout
 from conciergerie.models import Travail
 
-#from .filters import TravailFilter
 
 class TravailCreateForm(forms.ModelForm):
     date = forms.DateField(help_text="exemple: 30/12/2017 ou 30.12.17 ou 30 12 17; 30 1 17 etc: jour mois année")
@@ -30,18 +27,6 @@ class TravailCreateForm(forms.ModelForm):
         }
 
 
-class TravailFormSetHelper(FormHelper):
-    def __init__(self, *args, **kwargs):
-        super(TravailFormSetHelper, self).__init__(*args, **kwargs)
-        self.form_method = 'post'
-        self.form_action = reverse('conciergerie:createtv')
-        self.layout = Layout(
-            'date',
-            'titre',
-            'temps',
-        )
-
-        self.render_required_fields = False
 
 
 

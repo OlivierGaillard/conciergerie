@@ -6,11 +6,10 @@ from django.forms.models import BaseModelFormSet
 from django.forms.formsets import DELETION_FIELD_NAME
 from django.shortcuts import render, reverse
 from django.views.generic import CreateView, TemplateView
-from crispy_forms.layout import Submit
 from django_filters.views import FilterView
 from .models import Travail
 from .filters import TravailFilter
-from .forms import TravailCreateForm, TravailFormSetHelper
+from .forms import TravailCreateForm
 
 
 class BaseTravailFormSet(BaseModelFormSet):
@@ -26,9 +25,9 @@ class  TravailCreateView(CreateView):
     model = Travail
     template_name = "conciergerie/create.html"
     form_class = TravailCreateForm
-    extra_forms = 8
+    extra_forms = 4
     TravailFormset = modelformset_factory(Travail,
-                                          fields=['date', 'titre', 'temps'],
+    fields=['date', 'titre', 'temps'],
                                           form=TravailCreateForm,
                                           formset=BaseTravailFormSet,
                                           can_delete=True,
@@ -37,22 +36,15 @@ class  TravailCreateView(CreateView):
 
 
 
-    def make_crispy_helper(self):
-        helper = TravailFormSetHelper()
-        helper.add_input(Submit("submit", "Enregistrer"))
-        helper.label_class = 'col-sm-2'
-        helper.field_class = 'col-sm-2'
-        helper.template = 'bootstrap/table_inline_formset.html'
-        return helper
 
     def get_context_data(self, **kwargs):
         context = super(TravailCreateView, self).get_context_data(**kwargs)
         formset = self.TravailFormset(queryset=Travail.objects.filter(owner=self.request.user))
         context['formset'] = formset
-        context['helper'] = self.make_crispy_helper()
         return context
 
     def post(self, request, *args, **kwargs):
+        print("in POST")
         self.object = None
         formset = self.TravailFormset(request.POST, request.FILES)
         if formset.is_valid():

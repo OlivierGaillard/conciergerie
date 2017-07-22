@@ -3,10 +3,67 @@
 block_page
 {% endblock %}
 {% block content %}
+<div class="container">
+
+
 <h1>Ajouter un travail</h1>
-{% load crispy_forms_tags %}
-{% crispy formset helper %}
-<p>
-{{ formset.non_form_errors }}
-</p>
+
+
+    <form method="post" action=" {% url 'conciergerie:createtv' %}" class="form-horizontal">{% csrf_token %}
+                {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form.id }}
+            <div class="form-group"><label class="col-xs-2 control-label">Date:</label>
+                <div class="col-xs-10"> {{ form.date }} </div>
+            </div>
+            <div class="form-group"><label class="col-xs-2 control-label">Titre:</label>
+                <div class="col-xs-10"> {{ form.titre }}</div>
+            </div>
+            <div class="form-group"><label class="col-xs-2 control-label">Temps:</label>
+                <div class="col-xs-10">{{ form.temps }}</div>
+            </div>
+            <div class="form-group"><label class="col-xs-2 control-label">Effacer?</label>
+                <div class="col-xs10">{{ form.DELETE }}</div>
+            </div>
+        <br>
+        {% endfor  %}
+        <p>
+            {% for dict in formset.errors %}
+                {% for error in dict.values %}
+                   {{ error }}
+                {% endfor %}
+            {% endfor %}
+
+        </p>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
 {% endblock %}
+
+{% comment %}
+<table class="table">
+            {% for form in formset %}
+            {{ form.id }}
+            <tr><td>
+                <div class="form-group">
+                  <label>Date:</label>
+                    {{ form.date }}
+                </div>
+               </td>
+                <td>
+                    <div class="form-group">
+                        <label>Titre:</label>
+                        {{ form.date }}
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label>Temps:</label>{{ form.temps }}
+                    </div>
+                </td>
+            </tr>
+            {% endfor  %}
+        </table>
+
+{% endcomment %}
