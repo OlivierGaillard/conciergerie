@@ -11,59 +11,46 @@ block_page
 
     <form method="post" action=" {% url 'conciergerie:createtv' %}" class="form-horizontal">{% csrf_token %}
                 {{ formset.management_form }}
+
         {% for form in formset %}
             {{ form.id }}
             <div class="form-group"><label class="col-xs-2 control-label">Date:</label>
                 <div class="col-xs-10"> {{ form.date }} </div>
             </div>
+                {% if form.date.errors %}
+                   <p class="alert alert-warning">
+                   {% for error in form.date.errors %}
+                   {{ error|escape }}
+                   {% endfor %}
+                   </p>
+                {% endif %}
+
+
             <div class="form-group"><label class="col-xs-2 control-label">Titre:</label>
                 <div class="col-xs-10"> {{ form.titre }}</div>
             </div>
+
             <div class="form-group"><label class="col-xs-2 control-label">Temps:</label>
-                <div class="col-xs-10">{{ form.temps }}</div>
+                <div class="col-xs-10 ">{{ form.temps }}</div>
             </div>
-            <div class="form-group"><label class="col-xs-2 control-label">Effacer?</label>
+                {% if form.temps.errors %}
+
+                   <p class="alert alert-warning">
+                   {% for error in form.temps.errors %}
+                   {{ error|escape}}
+                   {% endfor %}
+                   </p>
+
+                {% endif %}
+
+
+            <div class="form-group"><label class="col-xs-2 control-label" title="Supprimer?">Ôter?</label>
                 <div class="col-xs10">{{ form.DELETE }}</div>
             </div>
         <br>
         {% endfor  %}
-        <p>
-            {% for dict in formset.errors %}
-                {% for error in dict.values %}
-                   {{ error }}
-                {% endfor %}
-            {% endfor %}
-
-        </p>
 
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 </div>
 {% endblock %}
-
-{% comment %}
-<table class="table">
-            {% for form in formset %}
-            {{ form.id }}
-            <tr><td>
-                <div class="form-group">
-                  <label>Date:</label>
-                    {{ form.date }}
-                </div>
-               </td>
-                <td>
-                    <div class="form-group">
-                        <label>Titre:</label>
-                        {{ form.date }}
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <label>Temps:</label>{{ form.temps }}
-                    </div>
-                </td>
-            </tr>
-            {% endfor  %}
-        </table>
-
-{% endcomment %}

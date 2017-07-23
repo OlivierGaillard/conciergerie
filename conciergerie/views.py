@@ -44,7 +44,6 @@ class  TravailCreateView(CreateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        print("in POST")
         self.object = None
         formset = self.TravailFormset(request.POST, request.FILES)
         if formset.is_valid():
@@ -60,7 +59,6 @@ class  TravailCreateView(CreateView):
         else:
             context = super(TravailCreateView, self).get_context_data(**kwargs)
             context['formset'] = formset
-            context['helper'] = self.make_crispy_helper()
             return render(request, template_name=self.template_name, context=context)
 
     def get_success_url(self):
