@@ -6,7 +6,7 @@ from .forms import TravailFilterForm
 
 
 class TravailFilter(FilterSet):
-    month = django_filters.NumberFilter(label='No du mois', name='date', lookup_expr='month')
+    month = django_filters.NumberFilter(label='No du mois', name='datefr', lookup_expr='month')
 
     class Meta:
         model = Travail
@@ -17,5 +17,5 @@ class TravailFilter(FilterSet):
     def qs(self):
         parent = super(TravailFilter, self).qs
         d = datetime.now()
-        return parent.filter(owner=self.request.user, date__year=d.year)
+        return parent.filter(owner=self.request.user, datefr__year=d.year)
 

@@ -3,23 +3,48 @@
 {% block doctype %}<!DOCTYPE html>{% endblock %}
 {% load i18n %}
 <html lang="{{ LANGUAGE_CODE }}">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}{% endblock %}{% trans "My Website"%}</title>
-    <link rel="icon" href="{{ STATIC_URL }}site/img/favicon.ico" type="image/png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Quoted from Bootstrap:
+    The above 3 meta tags *must* come first in the head; any other head
+     content must come *after* these tags -->
+
+    <title>{% block title %}{% endblock %}{% trans "Conciergerie"%}</title>
+
+    {# <link rel="icon" href="{{ STATIC_URL }}site/img/favicon.ico" type="image/png" />#}
 {% block meta_tags %}{% endblock %}
+
+{% block stylesheet %}
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
 
-{% block stylesheet %}{% endblock %}
+     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="/static/conciergerie/date.js"></script>
+
+<!-- For jqueryui PROD -->
+<link rel="stylesheet" href="/static/conciergerie/jqueryui/jquery-ui.min.css">
+
+
 <link rel="stylesheet" type="text/css" href="/static/conciergerie/style.css" />
+
+{% endblock %}
+
+
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
 
 </head>
 
@@ -38,9 +63,41 @@
   {% endblock %}
 </div>
 
-</div>
-{% block extrabody %}{% endblock %}
 
+{% block extrabody %}
+{% endblock %}
+
+
+{% endblock %}
+
+
+
+
+   <!-- From Bootstrap doc quoted:
+   jQuery (necessary for Bootstrap's JavaScript plugins)
+   To uncomment in prod.
+   -->
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+
+<!-- For jqueryui -->
+<!-- jquery version 1.12.4 for deployment -->
+<!-- <script src="/static/conciergerie/jqueryui/jquery-ui.min.js"></script> -->
+
+<!-- JQuery for development, version 1.12.4 -->
+<!-- <script src="/static/conciergerie/jqueryui/external/jquery/jquery.js"></script> -->
+<!-- <script src="/static/conciergerie/jqueryui/jquery-ui.js"></script> -->
+
+<!-- JQuery for production, version 1.12.4 -->
+<script src="/static/conciergerie/jqueryui/external/jquery/jquery-3.2.1.min.js"></script>
+<script src="/static/conciergerie/jqueryui/jquery-ui.min.js"></script>
+
+
+<script src="/static/conciergerie/jqueryui/i18n/datepicker-fr-CH.js"></script>
+
+
+{% block javascript %}
 
 {% endblock %}
 </body>
