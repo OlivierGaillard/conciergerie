@@ -25,7 +25,7 @@ class  TravailCreateView(CreateView):
     model = Travail
     template_name = "conciergerie/create.html"
     form_class = TravailCreateForm
-    extra_forms = 1
+    extra_forms = 4
     TravailFormset = modelformset_factory(Travail,
     fields=['datefr', 'titre', 'temps'],
                                           form=TravailCreateForm,
