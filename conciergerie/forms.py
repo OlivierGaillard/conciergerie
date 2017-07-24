@@ -6,7 +6,7 @@ from conciergerie.models import Travail
 class TravailCreateForm(forms.ModelForm):
     datefr = forms.DateField(widget=forms.DateInput(
         format='%d.%m.%Y',
-        attrs={},
+        attrs={'readonly' : 'readonly'},
         ),
         #initial=datetime.today,
     )
