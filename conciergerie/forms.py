@@ -31,19 +31,3 @@ class TravailCreateForm(forms.ModelForm):
             }
 
         }
-
-
-
-
-
-class TravailFilterForm(forms.Form):
-
-    def clean(self):
-        cleaned_data = super(TravailFilterForm,self).clean()
-        month = cleaned_data.get("month")
-        if month is not None:
-            if month < 1 or month > 12:
-                self._errors['month'] = self._errors.get('month', [])
-                self._errors['month'].append("Choisir une valeur entre 1 et 12")
-
-        return cleaned_data
