@@ -7,6 +7,8 @@ from .forms import TravailFilterForm
 
 class TravailFilter(FilterSet):
     month = django_filters.NumberFilter(label='No du mois', name='datefr', lookup_expr='month')
+    choices = ('C', 'Conciergerie'), ('A', 'AirBnB')
+    type_travail = django_filters.ChoiceFilter(label='Type de travail', name='type', choices=choices)
 
     class Meta:
         model = Travail

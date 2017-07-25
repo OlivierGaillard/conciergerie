@@ -28,6 +28,8 @@ class Travail(models.Model):
                                 validators=[max_value])
     datefr  = models.DateField('Date', help_text='jj/mm/aaaa', default=timezone.now)
     owner = models.ForeignKey(User, editable=False, null=True)
+    choices = ('C', 'Conciergerie'), ('A', 'AirBnB')
+    type  = models.CharField(max_length=1, null=True, choices=choices, default='C')
 
     class Meta:
         ordering = ['datefr']

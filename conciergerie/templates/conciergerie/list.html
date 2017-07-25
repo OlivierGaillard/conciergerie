@@ -17,15 +17,23 @@ block_page
 <p>
 <table>
     <tr>
-        <th>No</th><th>Titre</th><th>Date</th><th>Duree</th>
+        <th>No</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Titre</th>
+        <th>Duree</th>
     </tr>
 {% for a in filter.qs %}
     <tr>
-        <td>{{ forloop.counter }}</td><td>{{ a.titre }}</td> <td>{{ a.datefr }}</td> <td>{{ a.temps}}</td>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ a.datefr }}</td>
+        <td>{{ a.get_type_display }}
+        <td>{{ a.titre }}</td>
+        <td>{{ a.temps}}</td>
     </tr>
 {% endfor %}
     <tr>
-        <th colspan="3">Total</th>
+        <th colspan="4">Total</th>
         <td> {{ temps_total }}</td>
     </tr>
 </table>

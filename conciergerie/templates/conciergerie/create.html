@@ -52,6 +52,18 @@ $(function() {
                    </p>
                 {% endif %}
 
+            <div class="form-group"><label class="col-xs-2 control-label">Type:</label>
+                <div class="col-xs-10"> {{ form.type  }}
+                </div>
+            </div>
+                {% if form.type.errors %}
+                   <p class="alert alert-warning">
+                   {% for error in form.type.errors %}
+                   {{ error|escape}}
+                   {% endfor %}
+                   </p>
+                {% endif %}
+
 
             <div class="form-group"><label class="col-xs-2 control-label">Titre:</label>
                 <div class="col-xs-10"> {{ form.titre }}</div>

@@ -14,7 +14,7 @@ class TravailCreateForm(forms.ModelForm):
 
     class Meta:
         model = Travail
-        fields = ['datefr', 'titre', 'temps' ]
+        fields = ['datefr', 'type', 'titre', 'temps' ]
         error_messages = {
             'temps' : { 'invalid': 'Format pas valide. Une virgule et non un point?',
                         'required' : 'Entrez une duree',

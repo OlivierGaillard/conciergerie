@@ -28,7 +28,7 @@ class  TravailCreateView(CreateView):
     form_class = TravailCreateForm
     extra_forms = 4
     TravailFormset = modelformset_factory(Travail,
-    fields=['datefr', 'titre', 'temps'],
+    fields=['datefr', 'type', 'titre', 'temps'],
                                           form=TravailCreateForm,
                                           formset=BaseTravailFormSet,
                                           can_delete=True,
