@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -39,7 +40,9 @@ class  TravailCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(TravailCreateView, self).get_context_data(**kwargs)
-        formset = self.TravailFormset(queryset=Travail.objects.filter(owner=self.request.user))
+        q1 = Travail.objects.filter(owner=self.request.user
+                                             ).filter(datefr__month=datetime.today().month)
+        formset = self.TravailFormset(queryset=q1)
         context['formset'] = formset
         return context
 
@@ -60,6 +63,7 @@ class  TravailCreateView(CreateView):
             context = super(TravailCreateView, self).get_context_data(**kwargs)
             context['formset'] = formset
             return render(request, template_name=self.template_name, context=context)
+
 
     def get_success_url(self):
         return reverse('conciergerie:list')
