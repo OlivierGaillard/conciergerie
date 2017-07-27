@@ -31,75 +31,83 @@ $(function() {
 
 <h1>Ajouter un travail</h1>
 
-
-
-
-    <form method="post" action=" {% url 'conciergerie:createtv' %}" class="form-horizontal">{% csrf_token %}
+    <div class="row">
+        <section >
+            <form method="post" action=" {% url 'conciergerie:createtv' %}" class="form-horizontal col-xs-12 col-lg-9">
+                {% csrf_token %}
                 {{ formset.management_form }}
 
+                {% for form in formset %}
+                   {{ form.id }}
+                <fieldset>
 
-        {% for form in formset %}
-            {{ form.id }}
-            <div class="form-group"><label class="col-xs-2 control-label">Date:</label>
-                <div class="col-xs-10"> {{ form.datefr  }}
+                    <div class="form-group">
+                        <label class="col-xs-3 col-lg-3 control-label">Date:</label>
+                        <div class="col-xs-9 col-lg-6">{{ form.datefr  }}</div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-xs-3 col-lg-3 control-label">Type:</label>
+                        <div class="col-xs-9 col-lg-6">{{ form.type  }}</div>
+                    </div>
+
+
+                    {% if form.titre.errors %}
+                        <div class="form-group has-error has-feedback">
+                            <label class="col-xs-3 col-lg-3 control-label">Titre:</label>
+                            <div class="col-xs-9 col-lg-6"> {{ form.titre }}
+                                <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                <span class="help-block">
+                                   {% for error in form.titre.errors %}
+                                   {{ error|escape}}
+                                   {% endfor %}
+                                </span>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            <label class="col-xs-3 col-lg-3 control-label">Titre:</label>
+                            <div class="col-xs-9 col-lg-6"> {{ form.titre }}</div>
+                        </div>
+                    {% endif %}
+
+
+                    {% if form.temps.errors %}
+                        <div class="form-group has-error has-feedback">
+                            <label class="col-xs-3 col-lg-3 control-label">Temps:</label>
+                            <div class="col-xs-9 col-lg-6">{{ form.temps }}
+                                <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                <span class="help-block">
+                                {% for error in form.temps.errors %}
+                                    {{ error|escape}}
+                                {% endfor %}
+                                </span>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            <label class="col-xs-3 col-lg-3 control-label">Temps:</label>
+                            <div class="col-xs-9 col-lg-6">{{ form.temps }}</div>
+                        </div>
+                    {% endif %}
+
+
+                    <div class="form-group">
+                        <label for="delete" class="col-xs-3 col-lg-3 control-label" title="Supprimer?">Ôter?</label>
+                        <div id="delete" class="col-xs-9 col-lg-6">{{ form.DELETE }}</div>
+                    </div>
+                 </fieldset>
+
+                {% endfor  %}
+
+                <div class="form-group">
+                    <button type="submit" class="pull-right btn btn-default">Enregistrer</button>
                 </div>
-            </div>
-                {% if form.datefr.errors %}
-                   <p class="alert alert-warning">
-                   {% for error in form.datefr.errors %}
-                   {{ error|escape}}
-                   {% endfor %}
-                   </p>
-                {% endif %}
 
-            <div class="form-group"><label class="col-xs-2 control-label">Type:</label>
-                <div class="col-xs-10"> {{ form.type  }}
-                </div>
-            </div>
-                {% if form.type.errors %}
-                   <p class="alert alert-warning">
-                   {% for error in form.type.errors %}
-                   {{ error|escape}}
-                   {% endfor %}
-                   </p>
-                {% endif %}
-
-
-            <div class="form-group"><label class="col-xs-2 control-label">Titre:</label>
-                <div class="col-xs-10"> {{ form.titre }}</div>
-            </div>
-                  {% if form.titre.errors %}
-                   <p class="alert alert-warning">
-                   {% for error in form.titre.errors %}
-                   {{ error|escape}}
-                   {% endfor %}
-                   </p>
-
-                {% endif %}
-
-
-            <div class="form-group"><label class="col-xs-2 control-label">Temps:</label>
-                <div class="col-xs-10 ">{{ form.temps }}</div>
-            </div>
-                {% if form.temps.errors %}
-
-                   <p class="alert alert-warning">
-                   {% for error in form.temps.errors %}
-                   {{ error|escape}}
-                   {% endfor %}
-                   </p>
-
-                {% endif %}
-
-
-            <div class="form-group"><label class="col-xs-2 control-label" title="Supprimer?">Ôter?</label>
-                <div class="col-xs10">{{ form.DELETE }}</div>
-            </div>
-        <br>
-        {% endfor  %}
-
-        <button type="submit" class="btn btn-default">Enregistrer</button>
-    </form>
+            </form>
+    </section>
+  </div>
 </div>
 {% endblock %}
 {% block extrabody %}

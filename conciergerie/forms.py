@@ -6,8 +6,8 @@ from conciergerie.models import Travail
 class TravailCreateForm(forms.ModelForm):
     datefr = forms.DateField(widget=forms.DateInput(
         format='%d.%m.%Y',
-        attrs={'readonly' : 'readonly'},
-        ),
+        attrs={'class' : 'form-control'},
+        ), 
         #initial=datetime.today,
     )
 
@@ -30,4 +30,8 @@ class TravailCreateForm(forms.ModelForm):
                 'required': 'Entrez une description du travail',
             }
 
+        }
+        widgets = {
+            'temps' : forms.TextInput(attrs={'class': 'form-control'}),
+            'titre' : forms.TextInput(attrs={'class': 'form-control'}),
         }
