@@ -26,13 +26,13 @@ class  TravailCreateView(CreateView):
     model = Travail
     template_name = "conciergerie/create.html"
     form_class = TravailCreateForm
-    extra_forms = 4
+    extra_forms = 10
     TravailFormset = modelformset_factory(Travail,
     fields=['datefr', 'type', 'titre', 'temps'],
                                           form=TravailCreateForm,
                                           formset=BaseTravailFormSet,
                                           can_delete=True,
-                                          max_num=10,
+                                          max_num=30,
                                           extra=extra_forms)
 
 
@@ -40,8 +40,8 @@ class  TravailCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(TravailCreateView, self).get_context_data(**kwargs)
-        q1 = Travail.objects.filter(owner=self.request.user
-                                             ).filter(datefr__month=datetime.today().month)
+        q1 = Travail.objects.filter(owner=self.request.user)
+                                             #).filter(datefr__month=datetime.today().month)
         formset = self.TravailFormset(queryset=q1)
         context['formset'] = formset
         return context
