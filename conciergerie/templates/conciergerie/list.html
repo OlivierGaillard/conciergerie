@@ -36,6 +36,12 @@ block_page
         <th colspan="4">Total</th>
         <td> {{ temps_total }}</td>
     </tr>
+    <tr>
+        <th colspan="2">Salaire horaire:</th>
+        <td> {{ salaire_horaire }}</td>
+        <th>Salaire total:</th>
+        <td> {{ salaire|floatformat }}</td>
+    </tr>
 </table>
 </p>
 {% endblock %}

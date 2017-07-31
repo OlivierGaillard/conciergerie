@@ -41,6 +41,7 @@ class Travail(models.Model):
 
 
 class Salary(models.Model):
-    hour_amount = models.DecimalField(decimal_places=2, max_digits=4)
+    hour_amount = models.DecimalField(decimal_places=2, max_digits=4, default=25.00)
+    owner = models.ForeignKey(User, null=True)
 
 

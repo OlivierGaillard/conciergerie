@@ -8,7 +8,7 @@ from django.forms.formsets import DELETION_FIELD_NAME
 from django.shortcuts import render, reverse
 from django.views.generic import CreateView, TemplateView
 from django_filters.views import FilterView
-from .models import Travail
+from .models import Travail, Salary
 from .filters import TravailFilter
 from .forms import TravailCreateForm
 
@@ -83,6 +83,9 @@ class TravailListViewFiltered(FilterView):
             temps_total += i.temps
         context['temps_total'] = temps_total
         context['owner'] = owner
+        hour_salary = Salary.objects.get(owner=self.request.user).hour_amount
+        context['salaire_horaire'] = hour_salary
+        context['salaire'] = hour_salary * temps_total
         return context
 
 
